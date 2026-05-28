@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital English Textbook - Version 2</title>
+    <style>
+        /* 기본 페이지 스타일 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background-color: #fdfdfd;
+        }
+
+        /* 컨트롤 패널 */
+        .controls {
+            background-color: #f1f2f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        button {
+            background-color: #3742fa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #5352ed;
+        }
+
+        /* 제목 및 날짜 */
+        h1 { color: #2f3542; font-size: 24px; border-bottom: 2px solid #3742fa; padding-bottom: 10px; margin-top: 40px;}
+        .date { color: #747d8c; font-style: italic; font-size: 14px; text-align: right; }
+
+        /* 문장 스타일 */
+        .sentence {
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            display: inline;
+        }
+        .sentence:hover {
+            background-color: #eccc6850; 
+        }
+
+        /* 한글 해석 스타일 */
+        .translation {
+            display: none; 
+            color: #57606f;
+            font-size: 0.9em;
+            background-color: #f1f2f6;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 5px 0 15px 0;
+            border-left: 3px solid #747d8c;
+        }
+
+        /* 단어 툴팁 (마우스 오버 시 뜻 보이기) */
+        .word {
+            color: #ff4757;
+            font-weight: bold;
+            cursor: help;
+            position: relative;
+            border-bottom: 1px dashed #ff4757;
+        }
+        
+        .word::after {
+            content: attr(data-meaning);
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2f3542;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            font-weight: normal;
+            z-index: 10; /* 말풍선이 텍스트 위에 잘 보이도록 설정 */
+        }
+        
+        .word:hover::after {
+            opacity: 1;
+        }
+
+        /* Extra Tip 블록 스타일 */
+        .extra-tip {
+            background-color: #e8f8f5;
+            border-left: 5px solid #1abc9c;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .extra-tip strong {
+            color: #16a085;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <p>💡 <strong>학습 가이드:</strong> 문장을 클릭하면 느리고 자연스러운 원어민 발음을 들을 수 있습니다.<br>빨간색 단어에 마우스를 올려 뜻을 확인하세요!</p>
+        <button onclick="toggleTranslations()">🇰🇷 한글 해석 전체 켜기/끄기</button>
+    </div>
+
+    <p class="date">July 15, 20**</p>
+
+    <!-- Intro -->
+    <div>
+        <span class="sentence" onclick="speak(this.innerText)">Visiting markets is a good way to learn about the <span class="word" data-meaning="문화">culture</span> of a country.</span>
+        <div class="translation">시장을 방문하는 것은 한 나라의 문화를 배우는 좋은 방법이다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">Markets are places where you can meet people, learn history, and taste <span class="word" data-meaning="지역의, 현지의">local</span> food.</span>
+        <div class="translation">시장은 사람들을 만나고, 역사를 배우며, 현지 음식을 맛볼 수 있는 곳이다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">I <span class="word" data-meaning="궁금해하다">wonder</span> whether there is any better way to <span class="word" data-meaning="발견하다">discover</span> another culture.</span>
+        <div class="translation">다른 문화를 발견하는 데 이보다 더 좋은 방법이 있는지 궁금하다.</div>
+    </div>
+
+    <!-- Section 1 -->
+    <h1>1. Grand Bazaar, Turkey</h1>
+    <div>
+        <span class="sentence" onclick="speak(this.innerText)">Turkey is a country where East meets West, so it has a long <span class="word" data-meaning="전통">tradition</span> of trade.</span>
+        <div class="translation">튀르키예는 동양과 서양이 만나는 국가여서, 무역의 긴 전통을 가지고 있다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">It is a <span class="word" data-meaning="자연스러운, 당연한">natural</span> place for large markets like the Grand Bazaar.</span>
+        <div class="translation">그곳은 그랜드 바자르와 같은 큰 시장이 생기기에 자연스러운 곳이다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">The market was built in 1455 in Istanbul.</span>
+        <div class="translation">이 시장은 1455년 이스탄불에 세워졌다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">Back then, the market had two big buildings, and people <span class="word" data-meaning="(물건을) 거래하다">traded</span> <span class="word" data-meaning="상품, 물품">goods</span> like <span class="word" data-meaning="천, 직물">cloth</span> and <span class="word" data-meaning="금">gold</span> there.</span>
+        <div class="translation">그 당시 시장에는 두 개의 큰 건물이 있었고, 사람들은 그곳에서 천과 금 같은 상품을 거래했다.</div>
+    </div>
+    <br>
+    <div>
+        <span class="sentence" onclick="speak(this.innerText)">Today the Grand Bazaar is much bigger, and it is the largest <span class="word" data-meaning="지붕이 덮인">covered</span> market in the world.</span>
+        <div class="translation">오늘날 그랜드 바자르는 훨씬 더 커졌으며, 세계에서 가장 큰 지붕이 덮인 시장이다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">It has 64 streets and more than 4,000 shops under one <span class="word" data-meaning="지붕">roof</span>.</span>
+        <div class="translation">하나의 지붕 아래 64개의 거리와 4,000개 이상의 상점이 있다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">The market <span class="word" data-meaning="끌어들이다, 유치하다">attracts</span> over 250,000 <span class="word" data-meaning="방문객">visitors</span> every day.</span>
+        <div class="translation">이 시장은 매일 25만 명 이상의 방문객을 끌어들인다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">You can buy almost any <span class="word" data-meaning="상상할 수 있는">imaginable</span> <span class="word" data-meaning="품목, 물건">item</span> there.</span>
+        <div class="translation">여러분은 그곳에서 상상할 수 있는 거의 모든 물건을 살 수 있다.</div>
+    </div>
+    
+    <div class="extra-tip">
+        <strong>Extra Tip</strong>
+        <span class="sentence" onclick="speak(this.innerText)">Ask shop <span class="word" data-meaning="주인">owners</span> if they <span class="word" data-meaning="취급하다, 팔다">carry</span> nazar boncuğu, a <span class="word" data-meaning="전통적인">traditional</span> Turkish <span class="word" data-meaning="상징">symbol</span> for <span class="word" data-meaning="행운">good luck</span>.</span>
+        <div class="translation">행운을 상징하는 전통적인 튀르키예 상징물인 나자르 본주(nazar boncuğu)를 취급하는지 상점 주인에게 물어보세요.</div>
+        <span class="sentence" onclick="speak(this.innerText)">Also, if you want a nice <span class="word" data-meaning="간식">snack</span>, make sure to try lokum, a traditional Turkish candy.</span>
+        <div class="translation">또한 맛있는 간식을 원한다면 전통 튀르키예 사탕인 로쿰(lokum)을 꼭 맛보세요.</div>
+    </div>
+
+    <!-- Section 2 -->
+    <h1>2. Damnoen Saduak Floating Market, Thailand</h1>
+    <div>
+        <span class="sentence" onclick="speak(this.innerText)">In the past, Thai people traded goods on rivers.</span>
+        <div class="translation">과거에 태국 사람들은 강에서 물건을 거래했다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">This was the beginning of floating markets in Thailand.</span>
+        <div class="translation">이것이 태국 수상 시장의 시작이었다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">With better road <span class="word" data-meaning="교통, 운송 수단">transportation</span>, many floating markets <span class="word" data-meaning="사라지다">disappeared</span>.</span>
+        <div class="translation">더 나은 도로 교통망이 생기면서 많은 수상 시장이 사라졌다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">Since the late 1960s, however, some of them have come back and kept the tradition <span class="word" data-meaning="살아있는">alive</span>.</span>
+        <div class="translation">그러나 1960년대 후반부터 그들 중 일부가 돌아와 전통을 이어가고 있다.</div>
+    </div>
+    <br>
+    <div>
+        <span class="sentence" onclick="speak(this.innerText)">Today, one of the most popular floating markets is Damnoen Saduak Floating Market.</span>
+        <div class="translation">오늘날 가장 인기 있는 수상 시장 중 하나는 담넌 사두억 수상 시장이다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">It is always <span class="word" data-meaning="붐비는, 복잡한">crowded</span> with <span class="word" data-meaning="관광객">tourists</span> from all over the world.</span>
+        <div class="translation">그곳은 전 세계에서 온 관광객들로 항상 붐빈다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">You can buy local foods and traditional gift items <span class="word" data-meaning="직접">directly</span> from boats.</span>
+        <div class="translation">여러분은 배에서 직접 현지 음식과 전통 선물용품을 살 수 있다.</div>
+    </div>
+
+    <div class="extra-tip">
+        <strong>Extra Tip</strong>
+        <span class="sentence" onclick="speak(this.innerText)">I wonder if you have ever had a meal on water.</span>
+        <div class="translation">물 위에서 식사를 해본 적이 있는지 궁금하네요.</div>
+        <span class="sentence" onclick="speak(this.innerText)">If not, try noodles like pad thai.</span>
+        <div class="translation">없다면 팟타이 같은 국수를 드셔보세요.</div>
+        <span class="sentence" onclick="speak(this.innerText)">The <span class="word" data-meaning="판매자">sellers</span> will cook them on their boats and pass them to you with a long fishing <span class="word" data-meaning="막대기, 장대">pole</span>.</span>
+        <div class="translation">판매자들이 배 위에서 요리한 다음 긴 낚싯대로 여러분에게 전달해 줄 것입니다.</div>
+    </div>
+
+    <!-- Section 3 -->
+    <h1>3. Aalsmeer Flower Market, The Netherlands</h1>
+    <div>
+        <span class="sentence" onclick="speak(this.innerText)">The Netherlands means “low lands.”</span>
+        <div class="translation">네덜란드는 "낮은 땅"을 의미한다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">As the name <span class="word" data-meaning="시사하다, 암시하다">suggests</span>, about a third of the country sits below <span class="word" data-meaning="해수면">sea level</span>.</span>
+        <div class="translation">이름에서 알 수 있듯이, 나라의 약 3분의 1이 해수면보다 낮다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">Thus, the Dutch built up the land, and one <span class="word" data-meaning="효과적인">effective</span> way to use it was to <span class="word" data-meaning="기르다, 재배하다">grow</span> flowers and sell them.</span>
+        <div class="translation">따라서 네덜란드 사람들은 땅을 돋우었고, 그것을 사용하는 효과적인 방법 중 하나는 꽃을 재배하여 파는 것이었다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">It is, therefore, no <span class="word" data-meaning="놀라움">surprise</span> that the country has the largest flower market in the world: the Aalsmeer Flower Market.</span>
+        <div class="translation">그러므로 이 나라가 세계에서 가장 큰 꽃 시장인 알스미어 꽃 시장을 가지고 있다는 것은 놀라운 일이 아니다.</div>
+    </div>
+    <br>
+    <div>
+        <span class="sentence" onclick="speak(this.innerText)">The building where the market is <span class="word" data-meaning="수용되다, 보관되다">housed</span> is bigger than 120 soccer fields.</span>
+        <div class="translation">시장이 들어선 건물은 축구장 120개보다 더 크다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">The market is busy with thousands of flower-filled <span class="word" data-meaning="수레, 카트">carts</span>.</span>
+        <div class="translation">시장은 꽃으로 가득 찬 수천 대의 카트로 분주하다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">They are moved mostly by <span class="word" data-meaning="전기로 작동하는">electric-powered</span> trucks.</span>
+        <div class="translation">그것들은 주로 전기 구동 트럭에 의해 이동된다.</div>
+        
+        <span class="sentence" onclick="speak(this.innerText)">Every day, around 20 million flowers are traded and <span class="word" data-meaning="운송되다">shipped</span> to all <span class="word" data-meaning="구석, 모퉁이">corners</span> of the world.</span>
+        <div class="translation">매일 약 2천만 송이의 꽃이 거래되어 세계 구석구석으로 운송된다.</div>
+    </div>
+
+    <div class="extra-tip">
+        <strong>Extra Tip</strong>
+        <span class="sentence" onclick="speak(this.innerText)">You may wonder whether you can buy just a few flowers at the market.</span>
+        <div class="translation">시장에서 꽃을 몇 송이만 살 수 있는지 궁금할 수 있습니다.</div>
+        <span class="sentence" onclick="speak(this.innerText)">Sadly, you cannot, but you can see how <span class="word" data-meaning="도매의">whole sale</span> flower trading works.</span>
+        <div class="translation">애석하게도 그럴 수는 없지만, 꽃 도매 거래가 어떻게 이루어지는지 볼 수 있습니다.</div>
+    </div>
+
+    <script>
+        // 목소리 목록을 담을 변수
+        let voices = [];
+
+        // 브라우저에서 사용 가능한 목소리 목록 불러오기
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+        }
+
+        // 목소리 목록이 로드될 때 실행 (크롬 등 일부 브라우저 호환성을 위해 필요)
+        if ('onvoiceschanged' in window.speechSynthesis) {
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+        } else {
+            loadVoices();
+        }
+
+        // 문장 읽어주기 기능 (TTS)
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // 진행중인 음성 중지
+                
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = 'en-US'; 
+                msg.rate = 0.8;     // 속도를 더 느리게 설정 (기본 1.0 -> 0.8)
+
+                // 더 자연스러운 고품질 목소리 찾기 (Google, Natural 등)
+                if (voices.length > 0) {
+                    const naturalVoice = voices.find(voice => 
+                        voice.lang.includes('en-US') && 
+                        (voice.name.includes('Google') || voice.name.includes('Natural') || voice.name.includes('Online'))
+                    );
+                    
+                    if (naturalVoice) {
+                        msg.voice = naturalVoice; // 고품질 음성 적용
+                    } else {
+                        // 고품질 음성이 없다면 기본 영어 음성 적용
+                        const defaultUsVoice = voices.find(voice => voice.lang === 'en-US');
+                        if (defaultUsVoice) msg.voice = defaultUsVoice;
+                    }
+                }
+
+                window.speechSynthesis.speak(msg);
+            } else {
+                alert("현재 사용 중인 브라우저가 음성 듣기 기능을 지원하지 않습니다.");
+            }
+        }
+
+        // 해석 보이기/숨기기 토글 기능
+        function toggleTranslations() {
+            const translations = document.querySelectorAll('.translation');
+            let isHidden = true;
+            
+            if (translations.length > 0) {
+                isHidden = (window.getComputedStyle(translations[0]).display === 'none');
+            }
+
+            translations.forEach(el => {
+                el.style.display = isHidden ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
